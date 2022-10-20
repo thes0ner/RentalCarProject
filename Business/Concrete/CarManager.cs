@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,16 @@ namespace Business.Concrete
                 Console.WriteLine("Sorry,Car name must be upper than one character and Daily Price must be greather than 0, please try again! ");
         }
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
+        }
+
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
@@ -42,5 +53,11 @@ namespace Business.Concrete
         {
             return (List<Car>)_carDal.GetAll().Where(c => c.Id == id);
         }
+
+        public List<CarDetailsDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
+        }
+
     }
 }
