@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Results.Abstract;
+using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -19,29 +22,44 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Brand brand)
         {
-            throw new NotImplementedException();
+            _brandDal.Add(brand);
+            return new SuccessResult(Messages.BrandAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Brand brand)
         {
-            throw new NotImplementedException();
+            if(brand == null)
+                return new ErrorResult(Messages.BrandNotFound);
+            else
+            {
+                _brandDal.Delete(brand);
+                return new SuccessResult(Messages.BrandDeleted);
+            }
+                
+        }
+        public IResult Update(Brand brand)
+        {
+            if (brand == null)
+                return new ErrorResult(Messages.BrandNotFound);
+            else
+            {
+                _brandDal.Update(brand);
+                return new SuccessResult(Messages.BrandUpdated);
+            }
+        }
+        public IDataResult<List<Brand>> GetAll()
+        {
+
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetCarsByBrandId(int id)
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll().Where(b=>b.Id == id).ToList());
         }
 
-        public List<Brand> GetCarsByBrandId(int id)
-        {
-            return _brandDal.GetAll().Where(b=>b.Id == id).ToList();
-        }
 
-        public void Update(Car car)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

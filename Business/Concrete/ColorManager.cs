@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Results.Abstract;
+using Core.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,29 +20,46 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Color color)
         {
-            throw new NotImplementedException();
+
+            _colorDal.Add(color);
+            return new SuccessResult(Messages.ColorAdded);
+
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Color color)
         {
-            throw new NotImplementedException();
+            if (color == null)
+                return new ErrorResult(Messages.ColorNotFound);
+            else
+            {
+                _colorDal.Delete(color);
+                return new SuccessResult(Messages.ColorDeleted);
+            }
+
+
         }
 
-        public List<Color> GetAll()
+        public IResult Update(Color color)
         {
-            return _colorDal.GetAll();
+            if (color == null)
+                return new ErrorResult(Messages.ColorNotFound);
+            else
+            {
+                _colorDal.Update(color);
+                return new SuccessResult(Messages.CarUpdated);
+            }
         }
 
-        public List<Color> GetCarsByColorId(int id)
+        public IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll().Where(c => c.Id == id).ToList();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
         }
 
-        public void Update(Car car)
+        public IDataResult<List<Color>> GetCarsByColorId(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll().Where(c => c.Id == id).ToList());
         }
     }
 }
