@@ -9,24 +9,52 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //RentalAddTest();
 
-            CarManager carManager = new CarManager(new EfCarDal());
+            RentalDeleteTest();
+        }
 
-            var carDetails = carManager.GetCarDetails();
-            var res = carManager.GetAll().
+        private static void RentalDeleteTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-            if (carDetails.Success == true)
+            Rental rental = new Rental()
             {
-                foreach (var carDetail in carDetails.Data)
-                {
-                    Console.WriteLine($"{carDetail.Id}  {carDetail.BrandName}  {carDetail.ColorName}");
-                }
-            }
-            else
-            {
-                Console.WriteLine(carDetails.Message);
-            }
+                Id= 2,
+            };
 
+            //rentalManager.Add(rental);
+            Console.WriteLine(rentalManager.Delete(rental).Message);
+        }
+
+        private static void RentalAddTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            Rental rental = new Rental()
+            {
+                CarId = 7,
+                CustomerId = 1,
+                RentDate = new DateTime(2022, 12, 1),
+                ReturnDate = null
+            };
+
+            //rentalManager.Add(rental);
+            Console.WriteLine(rentalManager.Add(rental).Message);
+        }
+
+        private static UserManager UserAddTest()
+        {
+            UserManager user = new UserManager(new EfUserDal());
+            user.Add(new User { FirstName = "Soner", LastName = "Abduramanov", Email = "soner@outlook.com", Password = "1q2w3e4r5t6y!" });
+            return user;
+        }
+
+        private static CustomerManager CustomerAddTest()
+        {
+            CustomerManager customer = new CustomerManager(new EfCustomerDal());
+            customer.Add(new Customer { UserId = 1, CompanyName = "Falcon X", Address = "Street1 Skopje", City = "Skopje", Country = "Macedonia" });
+            return customer;
         }
 
         private static void CarUpdateTest()

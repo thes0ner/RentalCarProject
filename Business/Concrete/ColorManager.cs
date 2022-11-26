@@ -22,7 +22,6 @@ namespace Business.Concrete
 
         public IResult Add(Color color)
         {
-
             _colorDal.Add(color);
             return new SuccessResult(Messages.ColorAdded);
 
@@ -30,26 +29,15 @@ namespace Business.Concrete
 
         public IResult Delete(Color color)
         {
-            if (color == null)
-                return new ErrorResult(Messages.ColorNotFound);
-            else
-            {
-                _colorDal.Delete(color);
-                return new SuccessResult(Messages.ColorDeleted);
-            }
-
+            _colorDal.Delete(color);
+            return new SuccessResult(Messages.ColorDeleted);
 
         }
 
         public IResult Update(Color color)
         {
-            if (color == null)
-                return new ErrorResult(Messages.ColorNotFound);
-            else
-            {
-                _colorDal.Update(color);
-                return new SuccessResult(Messages.CarUpdated);
-            }
+            _colorDal.Update(color);
+            return new SuccessResult(Messages.CarUpdated);
         }
 
         public IDataResult<List<Color>> GetAll()
