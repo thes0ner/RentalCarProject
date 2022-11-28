@@ -14,7 +14,7 @@ namespace Business.Concrete
 {
     public class RentalManager :IRentalService
     {
-        IRentalDal _rentalDal;
+        private readonly IRentalDal _rentalDal;
 
         public RentalManager(IRentalDal rentalDal)
         {
@@ -23,22 +23,20 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            if(rental == null)
-            {
-                return new ErrorResult("This vehicle cannot be rented.");
-            }
-            else
-            {
-                _rentalDal.Add(rental);
-                return new SuccessResult(Messages.RentalAdded);
-            }
-           
+            _rentalDal.Add(rental);
+            return new SuccessResult();  
         }
 
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-            return new SuccessResult(Messages.RentalDeleted);
+            return new SuccessResult();
+        }
+
+        public IResult Update(Rental rental)
+        {
+            _rentalDal.Update(rental);
+            return new SuccessResult();
         }
 
         public IDataResult<List<Rental>> GetAll()
@@ -51,10 +49,5 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll().Where(r=>r.Id == id).ToList());
         }
 
-        public IResult Update(Rental rental)
-        {
-            _rentalDal.Update(rental);
-            return new SuccessResult(Messages.RentalUpdated);
-        }
     }
 }

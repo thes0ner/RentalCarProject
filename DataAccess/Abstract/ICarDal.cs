@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal :IEntityRepository<Car>
+    public interface ICarDal : IEntityRepository<Car>
     {
-        
-        List<CarDetailsDto> GetCarDetails();
 
+        List<CarDetailDto> GetCarDetails();
+        List<CarDetailDto> GetCarDetailsById(int carId);
+        List<CarDetailDto> GetCarDetailsByColorId(int colorId);
+        List<CarDetailDto> GetCarDetailsByBrandId(int brandId);
 
 
     }

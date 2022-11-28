@@ -9,7 +9,6 @@ namespace Business.Constants
     public static class Messages
     {
         public static string CarAdded = "Car added .";
-        public static string CarNameInvalid = "Car name is invalid .";
         public static string CarDeleted = "Car deleted .";
         public static string CarUpdated = "Car updated .";
         public static string MaintenanceTime = "Maintenance time ! Thanks for waiting .";
@@ -33,11 +32,11 @@ namespace Business.Constants
         public static string CustomerAdded = "Customer added .";
         public static string CustomerUpdated = "Customer updated .";
         public static string CustomerDeleted = "Customer deleted .";
-        public static string CustomerListed = "Customer are listed .";
+        public static string CustomerListed = "Customers are listed .";
 
         public static string RentalAdded = "Rental added .";
         public static string RentalUpdated = "Rental updated .";
         public static string RentalDeleted = "Rental deleted .";
-        public static string RentalListed = "Rental are listed .";
+        public static string RentalsListed = "Rentals are listed .";
     }
 }
