@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Core.DataAccess.EntityFramework
 {
-    public abstract class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
+    public  class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
@@ -47,7 +47,7 @@ namespace Core.DataAccess.EntityFramework
             {
                 return filter == null
                 ? context.Set<TEntity>().ToList()
-                    : context.Set<TEntity>().Where(filter).ToList();
+                : context.Set<TEntity>().Where(filter).ToList();
             }
         }
 

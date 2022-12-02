@@ -27,7 +27,9 @@ namespace Business.Constants
         public static string UserAdded = "User added .";
         public static string UserUpdated = "User updated .";
         public static string UserDeleted = "User deleted .";
-        public static string UserListed = "Users are listed .";
+        public static string UsersListed = "Users are listed .";
+        public static string MainetenanceTime = "System is closed";
+
 
         public static string CustomerAdded = "Customer added .";
         public static string CustomerUpdated = "Customer updated .";
@@ -38,5 +40,6 @@ namespace Business.Constants
         public static string RentalUpdated = "Rental updated .";
         public static string RentalDeleted = "Rental deleted .";
         public static string RentalsListed = "Rentals are listed .";
+
     }
 }

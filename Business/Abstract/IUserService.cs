@@ -13,7 +13,7 @@ namespace Business.Abstract
     {
 
         IDataResult<List<User>> GetAll();
-        IDataResult<List<User>> GetUsersById(int id);
+        IDataResult<User> GetUsersById(int userId);
         IResult Add(User user);
         IResult Update(User user);
         IResult Delete(User user);

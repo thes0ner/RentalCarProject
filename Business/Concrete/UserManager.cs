@@ -15,7 +15,7 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
 
-        private readonly IUserDal _userDal;
+        IUserDal _userDal;
 
         public UserManager(IUserDal userDal)
         {
@@ -42,12 +42,15 @@ namespace Business.Concrete
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll());
+            //if (DateTime.Now.Hour == 15)
+            //    return new ErrorDataResult<List<User>>(Messages.MainetenanceTime);
+
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
         }
 
-        public IDataResult<List<User>> GetUsersById(int id)
+        public IDataResult<User> GetUsersById(int userId)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll().Where(u => u.Id == id).ToList());
+            return new SuccessDataResult<User>(_userDal.Get(u=>u.Id == userId));
         }
 
 

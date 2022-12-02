@@ -16,10 +16,12 @@ namespace Core.Results.Concrete
 
         public SuccessDataResult(T data) : base(data, true)
         {
+
         }
 
         SuccessDataResult(string message) : base(default, true, message)
         {
+
         }
         public SuccessDataResult() : base(default, true)
         {
