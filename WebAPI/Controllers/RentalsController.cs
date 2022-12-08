@@ -7,20 +7,20 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class RentalsController : ControllerBase
     {
-        private readonly IUserService _userService;
 
-        public UsersController(IUserService userService)
+        private readonly IRentalService _rentalService;
+
+        public RentalsController(IRentalService rentalService)
         {
-            _userService = userService;
+            _rentalService= rentalService;
         }
-
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _userService.GetAll();
+            var result = _rentalService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -28,53 +28,55 @@ namespace WebAPI.Controllers
                 return BadRequest(result);
         }
 
-
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        [HttpGet("getrentsbyid")]
+        public IActionResult GetRentsByRentId(int id)
         {
-            var result = _userService.GetUsersById(id);
+            var result = _rentalService.GetRentsByRentId(id);
             if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
 
 
-        [HttpPost("adduser")]
-        public IActionResult Add(User user)
+        [HttpPost("addrent")]
+        public IActionResult Add(Rental rental)
         {
-            var result = _userService.Add(user);
+            var result = _rentalService.Add(rental);
             if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
 
-        [HttpPost("updateuser")]
-        public IActionResult Update(User user)
+        [HttpPost("updaterent")]
+        public IActionResult Update(Rental rental)
         {
-            var result = _userService.Update(user);
+            var result = _rentalService.Update(rental);
             if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
 
 
-        [HttpPost("deleteuser")]
-        public IActionResult Delete(User user)
+        [HttpPost("deleterent")]
+        public IActionResult Delete(Rental rental)
         {
-            var result = _userService.Delete(user);
-            if(result.Success)
+            var result = _rentalService.Delete(rental);
+            if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
-
 
 
 

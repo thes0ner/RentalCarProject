@@ -39,6 +39,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         }
 
+
         public List<CarDetailDto> GetCarDetailsByBrandId(int brandId)
         {
             using (RentalCarContext context = new RentalCarContext())
@@ -58,7 +59,6 @@ namespace DataAccess.Concrete.EntityFramework
                                  Description = c.Description
                              };
                 return result.ToList();
-
 
             }
         }
@@ -110,5 +110,6 @@ namespace DataAccess.Concrete.EntityFramework
 
             }
         }
+
     }
 }

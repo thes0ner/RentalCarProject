@@ -7,76 +7,78 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class BrandsController : ControllerBase
     {
-        private readonly IUserService _userService;
 
-        public UsersController(IUserService userService)
+        private readonly IBrandService _brandService;
+
+        public BrandsController(IBrandService brandService)
         {
-            _userService = userService;
+            _brandService = brandService;
         }
 
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _userService.GetAll();
+            var result = _brandService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
 
-
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        [HttpGet("getbrandbyid")]
+        public IActionResult GetRentsByRentId(int id)
         {
-            var result = _userService.GetUsersById(id);
+            var result = _brandService.GetCarsByBrandId(id);
             if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
 
 
-        [HttpPost("adduser")]
-        public IActionResult Add(User user)
+        [HttpPost("addbrand")]
+        public IActionResult Add(Brand brand)
         {
-            var result = _userService.Add(user);
+            var result = _brandService.Add(brand);
             if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
 
-        [HttpPost("updateuser")]
-        public IActionResult Update(User user)
+        [HttpPost("updatebrand")]
+        public IActionResult Update(Brand brand)
         {
-            var result = _userService.Update(user);
+            var result = _brandService.Update(brand);
             if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
 
 
-        [HttpPost("deleteuser")]
-        public IActionResult Delete(User user)
+        [HttpPost("deletebrand")]
+        public IActionResult Delete(Brand brand)
         {
-            var result = _userService.Delete(user);
-            if(result.Success)
+            var result = _brandService.Delete(brand);
+            if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
                 return BadRequest(result);
         }
-
-
-
 
     }
 }

@@ -15,7 +15,7 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
 
-        IUserDal _userDal;
+        private readonly IUserDal _userDal;
 
         public UserManager(IUserDal userDal)
         {
@@ -50,7 +50,7 @@ namespace Business.Concrete
 
         public IDataResult<User> GetUsersById(int userId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u=>u.Id == userId));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
         }
 
 
